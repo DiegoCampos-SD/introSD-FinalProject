@@ -1,10 +1,22 @@
+'''
+Author: Diego Campos
+Version: 1.0
+Date: 09/28/24
+Assignment: Final Project 
+Description:
+This is the final project for Introduction to Software Development class
+at IvyTech Fall 24. This project has been developed using Tkinter as GUI
+using Python as language. The main goal of this app is to help people to
+choose a secure password every time that the user requires it.
+'''
+
 import tkinter as tk
 from tkinter import messagebox, simpledialog, PhotoImage
 import random
 import string
 
 # Main Application Class
-class PasswordMakerApp:
+class GuardianLockApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Password Maker Helper")
@@ -108,5 +120,5 @@ class PasswordMakerApp:
 # Run Application
 if __name__ == "__main__":
     root = tk.Tk()
-    app = PasswordMakerApp(root)
+    app = GuardianLockApp(root)
     root.mainloop()
