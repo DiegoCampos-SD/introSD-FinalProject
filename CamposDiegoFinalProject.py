@@ -17,6 +17,7 @@ import string
 
 # Main Application Class
 class guardianLockApp:
+#This function will be crating the first app window (welcome window) .  
     def __init__(self, root):
         self.root = root
         self.root.attributes('-toolwindow', True)
@@ -26,8 +27,8 @@ class guardianLockApp:
         
         #Background-image
         self.imagePath = tk.PhotoImage(file="bg1.png")
-        self.background = tk.Label(self.root, image= self.imagePath)
-        self.background.place(relx=0.2, rely=0.75, anchor="center")
+        self.background1 = tk.Label(self.root, image= self.imagePath)
+        self.background1.place(relx=0.2, rely=0.75, anchor="center")
         
         # Header
         self.header_label = tk.Label(root, text="Welcome to Password Maker Helper", font=("Arial", 16), background="#d5eafd")
@@ -50,10 +51,9 @@ class guardianLockApp:
         self.generateButton = tk.Button(self.buttonFrame, text="Exit", height=1, width=4, font=("Arial", 12), fg="white", background="#780000", command=self.root.destroy) #Button to exit the app
         self.generateButton.pack(side="left", padx=5)
 
-        # Password Generation
-#        self.createPasswordGeneration()
 
-    def showInfo(self):
+#This function will be populate when the user clicks the info button in the main window.
+    def showInfo(self): 
         messagebox.showinfo("App information", "A password maker app is a tool designed " +
                             "to generate strong, unique passwords for users. This app " + 
                             "offers features like customizable length, inclusion of special " +
@@ -63,11 +63,11 @@ class guardianLockApp:
                             "and simplifies the process of managing multiple accounts.")
         
     
-    
+#This function will be crating the second window when the user clicks the start button in the main window.  
     def createPasswordGeneration(self):
         
         # Creats new window
-        self.newWindow = tk.Toplevel()
+        self.newWindow = tk.Toplevel(self.root)
         self.newWindow.attributes('-toolwindow', True)
         self.newWindow.overrideredirect()
         self.newWindow.geometry("500x350+400+300")
@@ -76,8 +76,8 @@ class guardianLockApp:
         
         # Background image
         self.imagePath = tk.PhotoImage(file="bg2.png")
-        self.background = tk.Label(self.newWindow, image= self.imagePath)
-        self.background.place(relx=0.25, rely=0.25, anchor="center")
+        self.background2 = tk.Label(self.newWindow, image= self.imagePath)
+        self.background2.place(relx=0.25, rely=0.25, anchor="center")
         
         # Password Length
         tk.Label(self.newWindow, text="Password Length:", font=("Arial", 16), background="#e2d0fd").pack(pady=5)
@@ -111,6 +111,7 @@ class guardianLockApp:
         self.generateButton = tk.Button(self.newWindow, text="Exit", height=1, width=4, font=("Arial", 12), fg="white", background="dark red", command=self.root.destroy) #Button to exit the app
         self.generateButton.pack(side="right", padx=10, pady=10)
 
+#This function will be generating the password with all the condition from the checkboxes selected.  
     def generatePassword(self):
         length = self.getPasswordLength()
         if length is None:
@@ -133,7 +134,10 @@ class guardianLockApp:
         password = ''.join(random.choice(characters) for _ in range(length))
         self.passwordDisplay.delete(0, tk.END)
         self.passwordDisplay.insert(0, password)
+        
 
+#This function will be getting the length chosen by the user and also will do 
+#the validation of the input; not empty and at least 8 characters length password.
     def getPasswordLength(self):
         try:
             length = int(self.lengthEntry.get())
@@ -143,7 +147,8 @@ class guardianLockApp:
         except ValueError:
             messagebox.showerror("Error", "Please enter a valid positive integer grader than 7 for password length.")
             return None
-
+        
+#This function will copy the generated password to the clipboard so the user doesn't have to memorize it 
     def copyToClipboard(self):
         password = self.passwordDisplay.get()
         if password == "":
