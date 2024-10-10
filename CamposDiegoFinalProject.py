@@ -145,7 +145,7 @@ class guardianLockApp:
                 raise ValueError
             return length
         except ValueError:
-            messagebox.showerror("Error", "Password length must be at least 8 characters.")
+            messagebox.showerror("Error", "Please enter a positive integer greater than 7 (letters are not allow)")
             return None
         
 #This function will copy the generated password to the clipboard so the user doesn't have to memorize it 
