@@ -1,7 +1,7 @@
 '''
 Author: Diego Campos
 Version: 1.0
-Date: 09/28/24
+Date: 10/09/24
 Assignment: Final Project 
 Description:
 This is the final project for Introduction to Software Development class
@@ -145,7 +145,7 @@ class guardianLockApp:
                 raise ValueError
             return length
         except ValueError:
-            messagebox.showerror("Error", "Please enter a valid positive integer grader than 7 for password length.")
+            messagebox.showerror("Error", "Password length must be at least 8 characters.")
             return None
         
 #This function will copy the generated password to the clipboard so the user doesn't have to memorize it 
